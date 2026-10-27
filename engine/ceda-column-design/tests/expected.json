@@ -1,0 +1,367 @@
+{
+ "_about": "Correct values for scripts/selftest.py. Each group names its source: hand check, CEDA rule agreed with the designer, CEDA Excel calc / issued drawing (VOCO Bangkok Sukhumvit 11), or engine baseline (regression lock, re-baseline only when a rule change is agreed). Units: kg, cm, kg-m in the engine; values below as stated.",
+ "T1_layout": {
+  "_source": "CEDA rules (grid c/c 125-150, small-face count, symmetric ties, tie-corner bundle ladder) – C1 2000x450 hand-drawn with the designer (Oct 2026) | ladder order CEDA 20 Oct 2026: each bundle size completed over the whole section (tie corners first) before the next size",
+  "grid_2000_face_positions": 14,
+  "grid_2000_face_cc_mm": 143.4,
+  "grid_450_face_positions": 3,
+  "ties_C1_sets": 4,
+  "ties_C1_supported_h": [
+   0,
+   2,
+   4,
+   6,
+   7,
+   9,
+   11,
+   13
+  ],
+  "support_pattern_m12": [
+   0,
+   1,
+   3,
+   5,
+   6,
+   8,
+   10,
+   11
+  ],
+  "min_bar_long_side_mm": {
+   "200": 12,
+   "201": 16,
+   "500": 16,
+   "501": 20,
+   "2000": 20
+  },
+  "C1_pattern_1pct": [
+   30,
+   20
+  ],
+  "ladder_first10_bar_counts": [
+   30,
+   30,
+   30,
+   34,
+   38,
+   42,
+   46,
+   50,
+   52,
+   56
+  ]
+ },
+ "T5_small_face": {
+  "_source": "CEDA rule 19 Oct 2026: face <= 200 mm 2 bars, <= 540 3, <= 660 4, else c/c 125-150; ACI 25.2.3 clear spacing; ACI 25.7.2.3 tie support",
+  "face_dims_mm": [
+   200,
+   201,
+   540,
+   541,
+   660,
+   661,
+   700
+  ],
+  "face_bars": [
+   2,
+   3,
+   3,
+   4,
+   4,
+   5,
+   5
+  ],
+  "max_single_bar_250x500": 20,
+  "supported_540_face_DB20": [
+   0,
+   1,
+   2
+  ]
+ },
+ "T2_C1_VOCO": {
+  "_source": "engine v1.2 design of VOCO C1 from the issued Excel load sheets (03_01_01..06), Lu/k as confirmed by the designer (basement 2.75 m k 1.0; above ground 4.5 m k 0.9), βd 0.888 | B6-B5 62 -> 64-DB32 with the CEDA ladder order of 20 Oct 2026 (2-bar bundles completed before 3-bar)",
+  "bands": {
+   "B6-B5": [
+    64,
+    32,
+    0.987
+   ],
+   "B4-B3": [
+    30,
+    32,
+    0.971
+   ],
+   "B2-B1": [
+    30,
+    25,
+    0.989
+   ],
+   "1st-3th": [
+    30,
+    25,
+    0.942
+   ],
+   "4th-10th": [
+    30,
+    28,
+    0.969
+   ],
+   "11th-20th": [
+    30,
+    20,
+    0.823
+   ]
+  },
+  "dc_tol": 0.002,
+  "delta_y_1st_3th": 2.181,
+  "rows": [
+   [
+    "B6-B5",
+    "B6-B5"
+   ],
+   [
+    "B4-B3",
+    "B4-B3"
+   ],
+   [
+    "B2-B1",
+    "B2-B1"
+   ],
+   [
+    "1st-3th",
+    "1st-3th"
+   ],
+   [
+    "4th-10th",
+    "4th-10th"
+   ],
+   [
+    "11th-20th",
+    "11th-20th"
+   ]
+  ]
+ },
+ "T8_C1_issued_drawing": {
+  "_source": "issued drawing S-04-01-01 R3 (VOCO), mark C1, bars on the drawn 22-position grid (10 bars on the 2000 face, 3 on the 450 face); engine 3D-surface D/C with the same loads. Issued design must check D/C <= 1 where the Lu/k match the issued calc. | 4th-10th 44-DB28 = 2-bar bundles at all 22 positions (CEDA ladder order 20 Oct 2026, as drawn) -> D/C 0.880",
+  "bands": {
+   "B6-B5": [
+    66,
+    32,
+    0.976
+   ],
+   "1st-3th": [
+    22,
+    28,
+    0.977
+   ],
+   "4th-10th": [
+    44,
+    28,
+    0.88
+   ],
+   "11th-20th": [
+    22,
+    25,
+    0.782
+   ]
+  },
+  "drawn_grid": {
+   "nb": 3,
+   "nh": 10
+  },
+  "dc_tol": 0.003
+ },
+ "T3_etabs_basement": {
+  "_source": "hand check on the synthetic 4-story ETABS set (tests/fixtures/make_synthetic_etabs.py): CEDA Rev.1 basement load assembly",
+  "stories": [
+   "B2",
+   "B1",
+   "1F",
+   "2F"
+  ],
+  "basement": [
+   "B2",
+   "B1"
+  ],
+  "combo_ok": {
+   "U_A_00_02": true,
+   "U_A_01_01": true,
+   "U_B_99": false
+  },
+  "C1_basement_P_kg": {
+   "B1": 502750,
+   "B2": 667000
+  },
+  "C1_B2_M3_kgm": 87575,
+  "C1_B2_V2_kg": 51687.5,
+  "C1_B2_beta_d": 0.82534
+ },
+ "T4_story_ranges": {
+  "_source": "CEDA rule: basement every story; above ground 2-3 stories with 12 m + Lst; f'c change always a break; early break on bundle removal / half steel",
+  "ranges": [
+   [
+    "B3",
+    "B3"
+   ],
+   [
+    "B2",
+    "B2"
+   ],
+   [
+    "B1",
+    "B1"
+   ],
+   [
+    "1F",
+    "1F"
+   ],
+   [
+    "2F",
+    "4F"
+   ],
+   [
+    "5F",
+    "7F"
+   ],
+   [
+    "8F",
+    "10F"
+   ],
+   [
+    "11F",
+    "12F"
+   ]
+  ]
+ },
+ "T6_marks": {
+  "_source": "CEDA marking rules 19 Oct 2026 (same label = same mark; same section incl. 90° rotation; ties in the mark; critical ties) + criterion A 20 Oct 2026: per label <= 25 % extra longitudinal steel, project <= 10 %, no row / step limit",
+  "max_weight_pct": 25
+ },
+ "T7_excel_input": {
+  "_source": "VOCO test export (forces only, tests/fixtures/voco_column_load.xlsx) + CEDA input workbook (tests/fixtures/voco_input_workbook.xlsx): Criteria, Stories (4.5 m), Sections (450x2000 for the test), Combos copied from the ETABS combo sheet",
+  "missing_without_workbook": [
+   "load combinations",
+   "column sizes",
+   "Lu / connectivity",
+   "beta_d"
+  ],
+  "fc_3rd": 560,
+  "fc_4th": 400,
+  "k": 0.9,
+  "beta_d": 0.888,
+  "Lu_cm": 450,
+  "combo_flag": "U_A_00_02",
+  "first_story": "1st",
+  "last_story": "20th"
+ },
+ "T9_wide_grid": {
+  "_source": "CEDA decision 20 Oct 2026 (Jan): singles / 2-bar bundles c/c 125-150, 3-4-bar bundles c/c up to 160 mm. Hand check ACI 25.2.3 + 25.6.1.6, DB32: deq3 = 55.4 -> clear 83.1 mm, deq4 = 64 -> 96.0 mm; 900x900 (e = 68 mm, span 764): 7 bars c/c 127.3 -> 3-bundle beside a 2-bundle clear 127.3-48 = 79.3 < 83.1 (blocked); 6 bars c/c 152.8 -> 3-3 clear 88.8 OK, 4-bundle at a corner beside <=2 bars 152.8-48 = 104.8 >= 96 OK. BKMPH02 run 20 Oct 2026. | v1.3.3 ladder order (2-bar everywhere, then 3-bar): first wide step 44-DB32 (3-bar at tie corners), max 60-DB32 (3-bar everywhere; 4-bar beside 3-bar needs c/c 160 > 152.8)",
+  "normal_900_face_positions": 7,
+  "normal_900_cc_mm": 127.3,
+  "normal_900_max": [
+   48,
+   2
+  ],
+  "wide_900_face_positions": 6,
+  "wide_900_cc_mm": 152.8,
+  "wide_900_first": [
+   44,
+   3
+  ],
+  "wide_900_max": [
+   60,
+   3
+  ],
+  "clear_req_DB32_3": 83.1,
+  "clear_req_DB32_4": 96.0,
+  "circ_900_positions_normal": 17,
+  "circ_900_positions_wide": 16
+ },
+ "T10_inner_bars": {
+  "_source": "CEDA pattern BKMPH02\\Output\\paattern.dxf (20 Oct 2026, Jan): DB32, cover 40 + tie DB12 (bar centre 68 mm). 1100×900: inner hoops x 1992–2311 / 2405–2724, y 3764–4062 (origin 1808, 3463) -> inner bars at x 205.7/481.1/618.9/894.3, y 322.7/577.3 mm; 900×900: x, y 322.7/577.3. Rules: last resort after the perimeter (125-150 grid, then wider grid 3-4 bundles); basement (compression) or label-stories approved for ρ > 6 % only.",
+  "inner_1100x900": [
+   [
+    205.7,
+    322.7
+   ],
+   [
+    205.7,
+    577.3
+   ],
+   [
+    481.1,
+    322.7
+   ],
+   [
+    481.1,
+    577.3
+   ],
+   [
+    618.9,
+    322.7
+   ],
+   [
+    618.9,
+    577.3
+   ],
+   [
+    894.3,
+    322.7
+   ],
+   [
+    894.3,
+    577.3
+   ]
+  ],
+  "inner_900x900": [
+   [
+    322.7,
+    322.7
+   ],
+   [
+    322.7,
+    577.3
+   ],
+   [
+    577.3,
+    322.7
+   ],
+   [
+    577.3,
+    577.3
+   ]
+  ],
+  "dxf_pattern_1100x900_bars": 50,
+  "dxf_pattern_900x900_bars": 28
+ },
+ "T14_input_layer": {
+  "lap_rows": 10,
+  "lap_400_DB32": 1700.0,
+  "lap_600_DB25": 925.0,
+  "lap_210_DB12": 400.0,
+  "source": "BKMPH02 'Development of Reinforcement Table.xlsx' sheet 40mm (CEDA TABLE 11.04, Lst = Class B other bar), checked against the Lap sheet of BKMPH02_Column_Input_final.xlsx (21 Oct 2026); combo file '04 Load Combination.xlsx'"
+ },
+ "T15_fc_study": {
+  "S0": [
+   600,
+   "1F"
+  ],
+  "S10": [
+   500,
+   "1F"
+  ],
+  "S25": [
+   400,
+   null
+  ],
+  "recommended": [
+   400,
+   null
+  ],
+  "S10_fail": 1,
+  "S10_under": 9,
+  "rec_conc_m3": 22.5,
+  "rec_steel_kg": 1413.0,
+  "rec_cost": 91706.0,
+  "source": "Hand-built matrix for the CEDA f'c rule of 23 Oct 2026 (outliers ≤ 10 % / ≤ 25 %, D/C ≥ 0.75 with the typical-f'c minimum-steel exemption, ≥ 50 % at ρ ≤ 1.5 % at the reduction story). 400 ksc everywhere: 30 column-stories × 0.5×0.5×3.0 m = 22.5 m³ × 2,600 = 58,500; As 20 cm² × 300 cm × 7.85e-3 = 47.1 kg × 30 = 1,413 kg × 23.5 = 33,205.5 → 91,706 THB (rounded)"
+ }
+}

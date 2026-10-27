@@ -1,0 +1,85 @@
+{
+ "project": {
+  "name": "SELFTEST C1 (VOCO)",
+  "job": "SELFTEST"
+ },
+ "seismic": {
+  "design": true,
+  "category": "ข",
+  "frame": "gravity"
+ },
+ "materials": {
+  "fy": 5000,
+  "fyt": 4000,
+  "fc_typical": 400,
+  "fc_by_story": {
+   "B6-B5": 560,
+   "B4-B3": 560,
+   "B2-B1": 560,
+   "1st-3th": 560,
+   "4th-10th": 400,
+   "11th-20th": 400
+  }
+ },
+ "detailing": {
+  "cover_mm": 40,
+  "tie_db": 12,
+  "kmax": 4,
+  "cc": [
+   125,
+   150
+  ],
+  "so_mm": 150,
+  "s_mm": 300
+ },
+ "slender": {
+  "k": 0.9,
+  "beta_d": 0.888,
+  "overrides": [
+   {
+    "stories": [
+     "B6-B5",
+     "B4-B3",
+     "B2-B1"
+    ],
+    "Lu_m": 2.75,
+    "k": 1.0
+   },
+   {
+    "stories": [
+     "1st-3th",
+     "4th-10th",
+     "11th-20th"
+    ],
+    "Lu_m": 4.5,
+    "k": 0.9
+   }
+  ]
+ },
+ "sections": {
+  "C1": {
+   "shape": "rect",
+   "b": 45,
+   "h": 200
+  }
+ },
+ "lap_table": {
+  "400": {
+   "25": 1550,
+   "28": 1875,
+   "32": 2325
+  },
+  "560": {
+   "25": 1325,
+   "28": 1600,
+   "32": 1975
+  }
+ },
+ "approved_rho_over_6": [],
+ "inputs": {
+  "forces_json": "c1_forces.json"
+ },
+ "story_ranges": {
+  "mode": "each"
+ }
+}
